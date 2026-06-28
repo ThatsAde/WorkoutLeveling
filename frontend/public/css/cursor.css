@@ -1,0 +1,137 @@
+/* ══════════════════════════════════════════════════════════
+   SOLO LEVELING – Custom Cursor
+   ══════════════════════════════════════════════════════════ */
+
+/* Hide native cursor on devices that support hover (desktop) */
+@media (hover: hover) and (pointer: fine) {
+  html, body {
+    cursor: none;
+  }
+
+  a, button, input, select, textarea, label, .nav__link, .card, .stat-card {
+    cursor: none;
+  }
+
+  /* Center inner targeting dot */
+  .cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    box-shadow:
+      0 0 6px var(--color-accent),
+      0 0 12px var(--color-accent),
+      0 0 24px rgba(var(--color-accent-rgb), 0.6);
+    transition: width 0.15s ease, height 0.15s ease, background 0.15s ease;
+    mix-blend-mode: screen;
+  }
+
+  /* Outer hunter targeting ring with rotating brackets */
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition:
+      width 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+      height 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+      border-color 0.2s ease,
+      opacity 0.2s ease;
+    border: 1px solid rgba(var(--color-accent-rgb), 0.5);
+    border-radius: 50%;
+    box-shadow:
+      inset 0 0 12px rgba(var(--color-accent-rgb), 0.2),
+      0 0 16px rgba(var(--color-accent-rgb), 0.25);
+  }
+
+  /* The four corner brackets that make it look like a targeting reticle */
+  .cursor-ring::before,
+  .cursor-ring::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border: 1px solid var(--color-accent);
+    pointer-events: none;
+    animation: cursor-ring-rotate 8s linear infinite;
+  }
+
+  .cursor-ring::before {
+    border-color: transparent;
+    border-top-color: var(--color-accent);
+    border-right-color: var(--color-accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(var(--color-accent-rgb), 0.4);
+  }
+
+  .cursor-ring::after {
+    border-color: transparent;
+    border-bottom-color: var(--color-purple);
+    border-left-color: var(--color-purple);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(var(--color-purple-rgb), 0.4);
+    animation-direction: reverse;
+    animation-duration: 6s;
+  }
+
+  @keyframes cursor-ring-rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* Hover state — when over interactive elements */
+  body:has(a:hover, button:hover, .nav__link:hover, .card:hover, .stat-card:hover, input:hover, select:hover, textarea:hover) .cursor-ring {
+    width: 50px;
+    height: 50px;
+    border-color: var(--color-purple);
+    box-shadow:
+      inset 0 0 20px rgba(var(--color-purple-rgb), 0.3),
+      0 0 30px rgba(var(--color-purple-rgb), 0.5);
+  }
+
+  body:has(a:hover, button:hover, .nav__link:hover, .card:hover, .stat-card:hover, input:hover, select:hover, textarea:hover) .cursor-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--color-purple);
+    box-shadow:
+      0 0 8px var(--color-purple),
+      0 0 16px var(--color-purple),
+      0 0 32px rgba(var(--color-purple-rgb), 0.7);
+  }
+
+  /* Click state — flash & shrink */
+  .cursor-ring.cursor--click {
+    width: 24px;
+    height: 24px;
+    border-color: var(--color-text-bright);
+    box-shadow:
+      inset 0 0 30px rgba(var(--color-accent-rgb), 0.5),
+      0 0 40px rgba(var(--color-accent-rgb), 0.8);
+  }
+
+  .cursor-dot.cursor--click {
+    width: 10px;
+    height: 10px;
+    background: var(--color-text-bright);
+  }
+
+  /* Hide cursor when typing in inputs */
+  input:focus ~ .cursor-ring,
+  textarea:focus ~ .cursor-ring {
+    opacity: 0;
+  }
+}
+
+/* On touch devices: hide custom cursor entirely */
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot, .cursor-ring { display: none; }
+}

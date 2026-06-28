@@ -1,0 +1,24 @@
+{
+  "name": "workout-leveling",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --outfile=public/dist/bundle.js --format=iife --target=es2020 --sourcemap --define:__API_BASE__='\"/api\"'",
+    "watch": "esbuild src/main.ts --bundle --outfile=public/dist/bundle.js --format=iife --target=es2020 --sourcemap --watch --define:__API_BASE__='\"/api\"'",
+    "dev": "esbuild src/main.ts --bundle --outfile=public/dist/bundle.js --format=iife --target=es2020 --sourcemap --watch --servedir=public --serve=3000 --define:__API_BASE__='\"/api\"'",
+    "dev:lan": "esbuild src/main.ts --bundle --outfile=public/dist/bundle.js --format=iife --target=es2020 --sourcemap --watch --servedir=public --serve=0.0.0.0:3000 --define:__API_BASE__='\"http://192.168.1.243:8000/api\"'",
+    "build:mobile": "esbuild src/main.ts --bundle --outfile=public/dist/bundle.js --format=iife --target=es2020 --define:__API_BASE__='\"https://YOUR_SERVER/api\"'",
+    "cap:sync": "npx cap sync android",
+    "build:android": "npm run build && npx cap sync android",
+    "open:android": "npx cap open android"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^7.6.1",
+    "@capacitor/app": "^7.1.2",
+    "@capacitor/cli": "^7.6.1",
+    "@capacitor/core": "^7.6.1",
+    "canvas": "^3.2.3",
+    "esbuild": "^0.28.0",
+    "typescript": "^5.4.0"
+  }
+}

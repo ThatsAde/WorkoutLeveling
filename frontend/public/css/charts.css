@@ -1,0 +1,280 @@
+/* ══════════════════════════════════════════════════════════
+   SOLO LEVELING – Dashboard & Charts
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Summary Grid ────────────────────────────────────────── */
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.stat-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  clip-path: var(--clip-notch);
+  transition: all var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+.stat-card--glow {
+  border-color: rgba(var(--color-accent-rgb), 0.35);
+  background:
+    linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-2) 100%),
+    radial-gradient(ellipse at top, rgba(var(--color-accent-rgb), 0.1), transparent 70%);
+  box-shadow:
+    inset 0 0 40px rgba(var(--color-accent-rgb), 0.05),
+    inset 0 1px 0 rgba(var(--color-accent-rgb), 0.2);
+}
+
+.stat-card--glow:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.6);
+  box-shadow:
+    inset 0 0 40px rgba(var(--color-accent-rgb), 0.08),
+    0 0 30px rgba(var(--color-accent-rgb), 0.15);
+}
+
+.stat-card--glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), var(--color-purple), transparent);
+  box-shadow: 0 0 12px rgba(var(--color-accent-rgb), 0.6);
+}
+
+.stat-card--glow::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.stat-card__value {
+  display: block;
+  font-family: var(--font-system);
+  color: var(--color-text-bright);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--color-text-bright) 0%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.stat-card__value--xl {
+  font-size: 2.4rem;
+  text-shadow: 0 0 30px rgba(var(--color-accent-rgb), 0.5);
+  letter-spacing: 0.05em;
+}
+
+.stat-card__label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: var(--space-xs);
+}
+
+.stat-card__icon {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+.stat-badge {
+  display: inline-block;
+  padding: 2px var(--space-sm);
+  font-size: 0.75rem;
+  background: rgba(var(--color-accent-rgb), 0.1);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+}
+
+/* ── Dashboard Grid ──────────────────────────────────────── */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+}
+
+.dashboard-card {
+  padding: var(--space-lg);
+}
+
+.dashboard-card h3 {
+  margin-bottom: var(--space-md);
+  font-size: 0.85rem;
+}
+
+.dashboard-card canvas {
+  max-height: 300px;
+}
+
+/* ── Muscle Heatmap ──────────────────────────────────────── */
+
+.muscle-heatmap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.heatmap-group__label {
+  margin-bottom: var(--space-xs);
+  font-size: 0.75rem;
+}
+
+.heatmap-cells {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.heatmap-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  border: 1px solid;
+  min-width: 80px;
+  text-align: center;
+  transition: all var(--transition);
+}
+
+.heatmap-cell span:first-child { font-weight: 600; }
+
+.heatmap-cell__count {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+.heatmap-cell--0 { background: var(--color-surface-2); border-color: var(--color-border); color: var(--color-text-muted); }
+.heatmap-cell--1 { background: rgba(var(--color-accent-rgb), 0.05); border-color: rgba(var(--color-accent-rgb), 0.15); color: rgba(var(--color-accent-rgb), 0.5); }
+.heatmap-cell--2 { background: rgba(var(--color-accent-rgb), 0.1); border-color: rgba(var(--color-accent-rgb), 0.25); color: rgba(var(--color-accent-rgb), 0.7); }
+.heatmap-cell--3 { background: rgba(var(--color-accent-rgb), 0.2); border-color: rgba(var(--color-accent-rgb), 0.4); color: var(--color-accent); }
+.heatmap-cell--4 { background: rgba(var(--color-purple-rgb), 0.2); border-color: rgba(var(--color-purple-rgb), 0.5); color: var(--color-purple); box-shadow: 0 0 8px rgba(var(--color-purple-rgb), 0.2); }
+.heatmap-cell--5 { background: rgba(var(--color-purple-rgb), 0.3); border-color: var(--color-purple); color: var(--color-text-bright); box-shadow: 0 0 15px rgba(var(--color-purple-rgb), 0.4); }
+
+/* ── Calendar ────────────────────────────────────────────── */
+
+.calendar-header {
+  text-align: center;
+  margin-bottom: var(--space-md);
+  font-size: 0.9rem;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.calendar-day-label {
+  text-align: center;
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: var(--space-xs);
+}
+
+.calendar-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  transition: all var(--transition);
+}
+
+.calendar-cell--active {
+  background: rgba(var(--color-accent-rgb), 0.2);
+  color: var(--color-accent);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.4);
+  box-shadow: 0 0 8px rgba(var(--color-accent-rgb), 0.3);
+  font-weight: 700;
+}
+
+.calendar-cell--today {
+  border: 1px solid var(--color-purple);
+  color: var(--color-text-bright);
+}
+
+.calendar-cell--active.calendar-cell--today {
+  background: linear-gradient(135deg, rgba(var(--color-accent-rgb), 0.3), rgba(var(--color-purple-rgb), 0.3));
+  box-shadow: 0 0 12px rgba(var(--color-purple-rgb), 0.4);
+}
+
+/* ── Responsive Dashboard ────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Mobile: Dashboard elementi ─────────────────────────── */
+
+@media (max-width: 768px) {
+  /* Stat card value: font più piccolo */
+  .stat-card__value--xl {
+    font-size: 1.4rem;
+  }
+
+  /* Heatmap: celle più compatte */
+  .heatmap-cell {
+    min-width: 60px;
+    font-size: 0.65rem;
+    padding: var(--space-xs) var(--space-sm);
+  }
+  .heatmap-cell__count {
+    font-size: 0.75rem;
+  }
+
+  /* Calendario: testo ridotto per 7 colonne su 360px */
+  .calendar-day-label {
+    font-size: 0.55rem;
+    padding: var(--space-xs) 2px;
+    letter-spacing: 0;
+  }
+  .calendar-cell {
+    font-size: 0.65rem;
+    padding: 3px 2px;
+  }
+}

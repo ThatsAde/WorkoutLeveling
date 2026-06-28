@@ -1,0 +1,73 @@
+:root {
+  /* ── Solo Leveling ARISE Palette ───────────────────────── */
+  --color-bg:          #03060d;
+  --color-bg-dark:     #01030a;
+  --color-surface:     #0a1220;
+  --color-surface-2:   #0f1a2e;
+  --color-surface-3:   #162338;
+  --color-border:      #1a3359;
+  --color-border-glow: #00e5ff44;
+
+  /* Accents — brighter cyan, deeper purple */
+  --color-accent:      #00e5ff;
+  --color-accent-rgb:  0, 229, 255;
+  --color-accent-hover:#66f0ff;
+  --color-purple:      #8b5cf6;
+  --color-purple-rgb:  139, 92, 246;
+  --color-purple-hover:#a78bfa;
+  --color-deep-purple: #4c1d95;
+  --color-deep-purple-rgb: 76, 29, 149;
+
+  /* Gold accent for S-rank / highlights */
+  --color-gold:        #ffd93d;
+  --color-gold-rgb:    255, 217, 61;
+
+  /* Text */
+  --color-text:        #e2e8f0;
+  --color-text-bright: #ffffff;
+  --color-text-muted:  #64748b;
+  --color-text-system: #00e5ff;
+
+  /* Status */
+  --color-success:     #00ff9d;
+  --color-success-rgb: 0, 255, 157;
+  --color-danger:      #ff2e5b;
+  --color-danger-rgb:  255, 46, 91;
+  --color-warning:     #ff9d00;
+
+  /* Spacing */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  40px;
+  --space-2xl: 64px;
+
+  /* Angular design — zero radius */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+
+  /* Clip paths for angular shapes */
+  --clip-notch:   polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  --clip-notch-sm: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  --clip-btn:     polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  --clip-panel:   polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+
+  /* Fonts */
+  --font-body: 'Rajdhani', 'Segoe UI', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  --font-system: 'Orbitron', 'Rajdhani', var(--font-mono);
+  --font-display: 'Orbitron', sans-serif;
+
+  /* Glow — more dramatic */
+  --glow-blue:    0 0 20px rgba(var(--color-accent-rgb), 0.6), 0 0 40px rgba(var(--color-accent-rgb), 0.3), 0 0 80px rgba(var(--color-accent-rgb), 0.15);
+  --glow-blue-sm: 0 0 10px rgba(var(--color-accent-rgb), 0.5);
+  --glow-purple:  0 0 20px rgba(var(--color-purple-rgb), 0.6), 0 0 40px rgba(var(--color-purple-rgb), 0.3);
+  --glow-text:    0 0 8px rgba(var(--color-accent-rgb), 0.9), 0 0 20px rgba(var(--color-accent-rgb), 0.5), 0 0 40px rgba(var(--color-accent-rgb), 0.3);
+  --glow-gold:    0 0 15px rgba(var(--color-gold-rgb), 0.7), 0 0 30px rgba(var(--color-gold-rgb), 0.4);
+
+  /* Transitions */
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}

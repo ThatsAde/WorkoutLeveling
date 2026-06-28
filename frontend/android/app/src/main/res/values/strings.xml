@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Workout Leveling</string>
+    <string name="title_activity_main">Workout Leveling</string>
+    <string name="package_name">com.workoutleveling.app</string>
+    <string name="custom_url_scheme">com.workoutleveling.app</string>
+</resources>
