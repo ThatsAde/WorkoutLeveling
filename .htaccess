@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# API requests -> PHP backend
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^api/(.*)$ backend/index.php [QSA,L]
+
+# Don't rewrite existing files
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Everything else -> frontend
+RewriteRule ^ frontend/public/index.html [L]

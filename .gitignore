@@ -1,0 +1,14 @@
+node_modules/
+frontend/public/dist/
+backend/data/workout.db
+backend/config/config.local.php
+.env
+*.log
+.DS_Store
+Thumbs.db
+
+# Capacitor Android build artifacts
+frontend/android/app/build/
+frontend/android/.gradle/
+frontend/android/local.properties
+frontend/android/.idea/
